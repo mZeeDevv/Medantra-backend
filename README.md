@@ -41,6 +41,10 @@ The API will be available at `http://localhost:8000`
 
 ## Vercel Deployment
 
+The project is configured to deploy as separate serverless functions to address Vercel's 250MB size limit.
+
+### Standard Deployment
+
 1. Push your code to GitHub:
 ```bash
 git add .
@@ -62,6 +66,25 @@ git push
    - Add all variables from your `.env` file
    
 4. Deploy!
+
+### Troubleshooting Size Limit Issues
+
+If you encounter the 250MB size limit error, try these steps:
+
+1. Increase the function timeout and memory in Vercel project settings:
+   - Go to Settings > Functions
+   - Set Max Duration to 60s
+   - Set Memory to 1024MB
+
+2. Use the optimized deployment with multiple serverless functions:
+   - Each API endpoint is configured as a separate function
+   - Each function has its own requirements file in the `api` directory
+   - The PDF processing is limited to 5 pages per document to reduce memory usage
+
+3. Check function size and logs:
+   - After deployment, go to the Vercel dashboard
+   - Check the Functions tab to see the size of each function
+   - Examine logs for any memory or timeout issues
 
 ## API Endpoints
 

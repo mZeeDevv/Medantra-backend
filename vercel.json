@@ -1,18 +1,14 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
-    }
+    { "src": "api/*.py", "use": "@vercel/python", "config": { "runtime": "python3.11" } }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/api/index.py"
-    }
-  ],
-  "env": {
-    "PYTHONPATH": "."
-  }
+    { "src": "/", "dest": "api/index.py" },
+    { "src": "/api", "dest": "api/index.py" },
+    { "src": "/embed-image", "dest": "api/embed_image.py" },
+    { "src": "/embed-pdf", "dest": "api/embed_pdf.py" },
+    { "src": "/ask", "dest": "api/ask.py" },
+    { "src": "/(.*)", "dest": "api/index.py" }
+  ]
 }

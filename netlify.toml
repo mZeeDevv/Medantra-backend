@@ -1,0 +1,22 @@
+[build]
+  command = "pip install -r requirements-prod.txt"
+  functions = "api"
+  publish = "public"
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["app/**", "api/**", ".env"]
+  external_node_modules = ["fastapi", "uvicorn"]
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/index"
+  status = 200
+
+[build.environment]
+  PYTHON_VERSION = "3.11"

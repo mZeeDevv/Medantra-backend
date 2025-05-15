@@ -1,0 +1,17 @@
+fastapi==0.103.1
+uvicorn==0.23.2
+python-dotenv==1.0.0
+pydantic==2.4.2
+starlette==0.27.0
+httpx==0.24.1
+python-multipart==0.0.6
+
+# For embedding and RAG
+cohere==4.37
+qdrant-client==1.6.3
+google-generativeai==0.3.2
+
+# For image processing
+Pillow==10.0.1
+pymupdf==1.23.5
+numpy==1.26.0

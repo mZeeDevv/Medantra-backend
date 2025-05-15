@@ -1,10 +1,15 @@
-import sys
-import os
+from http.server import BaseHTTPRequestHandler
+import json
 
-# Add the parent directory to the Python path so we can import from app
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from app.main import app
-
-# Add handler for Vercel serverless function
-handler = app
+class handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'application/json')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.end_headers()
+        response = {
+            "status": "ok",
+            "message": "Vision RAG API is running",
+            "endpoints": ["/embed-image", "/embed-pdf", "/ask"]
+        }
+        self.wfile.write(json.dumps(response).encode())
